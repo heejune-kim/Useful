@@ -1,0 +1,6 @@
+
+# SSL Error can occur when VM use NAT
+How to resolve => Change NAT to Bridged Adapter
+# But network can also have problems on VM due to between [Bridged Adapter] and [WiFi on Host]
+-> Change to wired network on [Advanced]
+-> and also change [Promiscuous Mode] to [Allow All] and make sure [Cable Connected] state to enabled.
