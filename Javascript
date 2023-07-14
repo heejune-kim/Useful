@@ -1,0 +1,16 @@
+# How to access hardware from web browser.
+
+1. Request hardware access privileges?
+navigator.usb.requestDevice({filters:[]}).then(function(device){
+   console.log(device);
+});
+
+2. Enumerate devices having access priveliges.
+navigator.usb.getDevices().then((devices) => {
+  console.log(`Total devices: ${devices.length}`);
+  devices.forEach((device) => {
+    console.log(
+      `Product name: ${device.productName}, serial number ${device.serialNumber}`,
+    );
+  });
+});
