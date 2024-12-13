@@ -1,0 +1,3 @@
+
+# A command to check if all files containing ".md5" files are correctly computed as md5 values. That is every file contents are ok or not.
+for i in `find ./ -name "*md5" -print`; do cat $i | md5sum -c -; done
