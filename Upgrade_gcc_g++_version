@@ -1,0 +1,18 @@
+
+# Add repository
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+
+# Update package list and install newer version (The following commands are for version 13) 
+sudo apt-get update
+sudo apt-get install -y gcc-13 g++-13
+/usr/bin/gcc-13 --version
+
+# Update default configuration as newer version
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 110
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 110
+sudo update-alternatives --config gcc
+
+# Test
+gcc --version
+cc --version
+c++ --version
