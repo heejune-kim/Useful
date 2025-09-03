@@ -1,0 +1,52 @@
+
+Azure Blob Storage mount on Linux
+
+===== begin of config.yaml =====
+
+logging:
+  type: syslog
+  level: log_debug
+
+components:
+  - libfuse
+  - file_cache
+  - azstorage
+
+libfuse:
+  allow-other: true
+
+file_cache:
+  path: /mnt/blobfusetmp
+  timeout-sec: 120
+  max-size-mb: 4096
+
+azstorage:
+  type: block
+  account-name: saairesearchnfs
+  sas: "sp=racwdlmeo&st=2025-08-22T06:59:56Z&se=2026-12-30T15:14:56Z&spr=https&sv=2024-11-04&sr=c&sig=33BZ3OX2yxEOxOi..."
+  endpoint: https://saairesearchnfs.blob.core.windows.net
+  container: saairesearchpsn
+
+===== end of config.yaml =====
+
+
+
+===== begin of mount.sh =====
+
+#!/bin/bash
+
+/mnt/umount.sh
+
+blobfuse2 mount /mnt/saairesearchpsn --config-file=/mnt/config.yaml --allow-other
+
+===== end of mount.sh =====
+
+
+
+===== begin of umount.sh =====
+
+#!/bin/bash
+
+umount /mnt/saairesearchpsn
+
+===== end of umount.sh =====
